@@ -3,6 +3,11 @@
   hosts: localhost
   become: true
   tasks:
+    - name: install python3-dnf.
+      ansible.builtin.package:
+        name: python3-dnf
+        state: present
+
     - name: Ensure httpd package is installed.
       ansible.builtin.package:
         name: httpd
