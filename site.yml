@@ -8,17 +8,16 @@
       ansible.builtin.package:
         name: httpd
         state: present
-        
+
     - name: install ansible.posix.firewalld module
       ansible.posix.firewalld:
         zone: public
         service: http
         state: enabled
-    - name: install python on RHEL8
-      when: ansible_distribution_major_version == '8'
+    - name: install python on RHEL8 on /usr/bin
       ansible.builtin.package:
-        name: '"python"'
-        state: present
+        name: python3
+        state: present    
     
     - name: Start and enable firewalld.
       ansible.builtin.service:
