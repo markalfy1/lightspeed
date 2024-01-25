@@ -8,6 +8,17 @@
       ansible.builtin.package:
         name: httpd
         state: present
+        
+    - name: install ansible.posix.firewalld module
+      ansible.posix.firewalld:
+        zone: public
+        service: http
+        state: enabled
+    - name: install python on RHEL8
+      when: ansible_distribution_major_version == '8'
+      ansible.builtin.package:
+        name: '"python"'
+        state: present
     
     - name: Start and enable firewalld.
       ansible.builtin.service:
@@ -28,13 +39,13 @@
         owner: root
         group: root
         mode: '0644'
-    
+  
     - name: Start and enable httpd.
       ansible.builtin.service:
         name: httpd
         state: started
         enabled: true
-    
+  
     - name: Print IP address for web server using Ansible facts.
       ansible.builtin.debug:
         var: ansible_default_ipv4.address
