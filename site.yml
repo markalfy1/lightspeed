@@ -9,11 +9,11 @@
         name: httpd
         state: present
 
-    - name: install ansible.posix.firewalld module
-      ansible.posix.firewalld:
-        zone: public
-        service: http
-        state: enabled
+    # - name: install ansible.posix.firewalld module
+    #   ansible.posix.firewalld:
+    #     zone: public
+    #     service: http
+    #     state: enabled
     - name: install python on RHEL8 on /usr/bin
       ansible.builtin.package:
         name: python3
